@@ -1,5 +1,5 @@
 
-object Deps {
+object Dependencies {
 
     // Essentials
     val coreKtx by lazy { "androidx.core:core-ktx:${Versions.coreKtx}" }
@@ -43,7 +43,6 @@ object Deps {
 
     // Networking & JSON
     val retrofit by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}" }
-    val retrosheet by lazy { "com.github.theapache64:retrosheet:${Versions.retrosheet}" }
     val moshi by lazy { "com.squareup.moshi:moshi:${Versions.moshi}" }
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshi}" }
 
@@ -75,8 +74,5 @@ object Deps {
 
     // Splash Screen
     val splashScreenCore by lazy { "androidx.core:core-splashscreen:${Versions.splashScreen}" }
-
-    // Billing
-    val googleBilling by lazy { "com.android.billingclient:billing-ktx:${Versions.gBilling}" }
 
 }

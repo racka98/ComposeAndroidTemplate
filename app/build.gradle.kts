@@ -63,96 +63,89 @@ android {
 
 dependencies {
 
-    implementation(Deps.coreKtx)
-    implementation(Deps.appCompat)
-    implementation(Deps.material)
-    implementation(Deps.lifecycleRuntimeKtx)
+    implementation(Dependencies.coreKtx)
+    implementation(Dependencies.appCompat)
+    implementation(Dependencies.material)
+    implementation(Dependencies.lifecycleRuntimeKtx)
 
     // Testing
-    testImplementation(Deps.junit)
-    testImplementation(Deps.testArchCore)
-    testImplementation(Deps.junitTest)
-    testImplementation(Deps.testExtJUnitKtx)
-    testImplementation(Deps.mockitoInline)
-    testImplementation(Deps.mockitoKotlin)
-    testImplementation(Deps.robolectric)
-    testImplementation(Deps.turbine)
-    testImplementation(Deps.coroutineTest)
+    testImplementation(Dependencies.junit)
+    testImplementation(Dependencies.testArchCore)
+    testImplementation(Dependencies.junitTest)
+    testImplementation(Dependencies.testExtJUnitKtx)
+    testImplementation(Dependencies.mockitoInline)
+    testImplementation(Dependencies.mockitoKotlin)
+    testImplementation(Dependencies.robolectric)
+    testImplementation(Dependencies.turbine)
+    testImplementation(Dependencies.coroutineTest)
 
-    androidTestImplementation(Deps.junitTest)
-    androidTestImplementation(Deps.espressoCore)
-    androidTestImplementation(Deps.testCoreKtx)
-    androidTestImplementation(Deps.testArchCore)
-    androidTestImplementation(Deps.mockitoAndroid)
-    androidTestImplementation(Deps.mockitoKotlin)
-    androidTestImplementation(Deps.turbine)
+    androidTestImplementation(Dependencies.junitTest)
+    androidTestImplementation(Dependencies.espressoCore)
+    androidTestImplementation(Dependencies.testCoreKtx)
+    androidTestImplementation(Dependencies.testArchCore)
+    androidTestImplementation(Dependencies.mockitoAndroid)
+    androidTestImplementation(Dependencies.mockitoKotlin)
+    androidTestImplementation(Dependencies.turbine)
 
     // Hilt Testing
     // Local Unit Tests
-    testImplementation(Deps.hiltTest)
-    kaptTest(Deps.hiltCompiler)
+    testImplementation(Dependencies.hiltTest)
+    kaptTest(Dependencies.hiltCompiler)
     // Instrumentation Test
-    androidTestImplementation(Deps.hiltTest)
-    kaptAndroidTest(Deps.hiltCompiler)
+    androidTestImplementation(Dependencies.hiltTest)
+    kaptAndroidTest(Dependencies.hiltCompiler)
 
     // Testing Compose
-    androidTestImplementation(Deps.junitCompose)
-    debugImplementation(Deps.composeTooling)
+    androidTestImplementation(Dependencies.junitCompose)
+    debugImplementation(Dependencies.composeTooling)
 
     // Compose
-    implementation(Deps.composeUi)
-    implementation(Deps.composeAnimation)
-    implementation(Deps.composeMaterial)
-    implementation(Deps.composePreview)
-    implementation(Deps.composeActivity)
-    implementation(Deps.composeViewModel)
-    implementation(Deps.composeNavigation)
-    implementation(Deps.composeMaterialIconsCore)
-    implementation(Deps.composeMaterialIconsExtended)
-    implementation(Deps.composeFoundation)
-    implementation(Deps.composeFoundationLayout)
-    implementation(Deps.composeConstraintLayout)
+    implementation(Dependencies.composeUi)
+    implementation(Dependencies.composeAnimation)
+    implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composePreview)
+    implementation(Dependencies.composeActivity)
+    implementation(Dependencies.composeViewModel)
+    implementation(Dependencies.composeNavigation)
+    implementation(Dependencies.composeMaterialIconsCore)
+    implementation(Dependencies.composeMaterialIconsExtended)
+    implementation(Dependencies.composeFoundation)
+    implementation(Dependencies.composeFoundationLayout)
+    implementation(Dependencies.composeConstraintLayout)
 
     // Retrofit
-    implementation(Deps.retrofit)
-
-    // Retrosheet
-    implementation(Deps.retrosheet)
+    implementation(Dependencies.retrofit)
 
     // Moshi
-    implementation(Deps.moshi)
-    implementation(Deps.moshiKotlin)
+    implementation(Dependencies.moshi)
+    implementation(Dependencies.moshiKotlin)
 
     // Timber
-    implementation(Deps.timber)
+    implementation(Dependencies.timber)
 
     // Hilt
-    implementation(Deps.hilt)
-    implementation(Deps.hiltNavigationCompose)
-    kapt(Deps.hiltCompiler)
+    implementation(Dependencies.hilt)
+    implementation(Dependencies.hiltNavigationCompose)
+    kapt(Dependencies.hiltCompiler)
 
     // Coil Image loader
-    implementation(Deps.coilImage)
+    implementation(Dependencies.coilImage)
 
     // Accompanist
-    implementation(Deps.accompanistInsets)
-    implementation(Deps.accompanistNavigationAnimations)
+    implementation(Dependencies.accompanistInsets)
+    implementation(Dependencies.accompanistNavigationAnimations)
 
     // Room database
-    implementation(Deps.roomRuntime)
-    implementation(Deps.roomKtx)
-    kapt(Deps.roomCompiler)
+    implementation(Dependencies.roomRuntime)
+    implementation(Dependencies.roomKtx)
+    kapt(Dependencies.roomCompiler)
 
     // Room test
-    testImplementation(Deps.roomTest)
+    testImplementation(Dependencies.roomTest)
 
     // Preferences DataStore
-    implementation(Deps.prefDataStore)
+    implementation(Dependencies.prefDataStore)
 
     // Splash Screen
-    implementation(Deps.splashScreenCore)
-
-    // Billing
-    implementation(Deps.googleBilling)
-
+    implementation(Dependencies.splashScreenCore)
 }

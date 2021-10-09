@@ -49,7 +49,6 @@ object Versions {
     // Networking & JSON
     const val moshi = "1.12.0"
     const val retrofit = "2.9.0"
-    const val retrosheet = "2.0.0-alpha05"
 
     // Database
     const val room = "2.3.0"
@@ -57,6 +56,4 @@ object Versions {
     // DataStore
     const val dataStore = "1.0.0"
 
-    // Billing
-    const val gBilling = "4.0.0"
 }
