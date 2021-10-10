@@ -18,4 +18,7 @@
     <color name="secondaryDarkColor">#c94f7c</color>
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#000000</color>
+
+    <color name="animated_icon_color">#99dddddd</color>
+    <color name="branding_image_text_color">#1E1E1E</color>
 </resources>
