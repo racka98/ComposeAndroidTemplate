@@ -1,10 +1,12 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+rootProject.name = "ComposeAndroidTemplate"
+include(":app")
+
+pluginManagement {
+    includeBuild("build-configs")
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
         maven(url = "https://www.jitpack.io")
     }
 }
-rootProject.name = "ComposeAndroidTemplate"
-include(":app")

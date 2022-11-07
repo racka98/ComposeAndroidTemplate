@@ -2,20 +2,19 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-parcelize")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdk = AppConfig.compileSdkVersion
+    namespace = "com.example.composetemplate"
+
+    compileSdk = libs.versions.config.android.compilesdk.get().toInt()
 
     defaultConfig {
-        applicationId = AppConfig.applicationId
-        minSdk = AppConfig.minSdkVersion
-        targetSdk = AppConfig.targetSdkVersion
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
+        applicationId = libs.versions.config.android.applicationId.get()
+        minSdk = libs.versions.config.android.minsdk.get().toInt()
+        targetSdk = libs.versions.config.android.targetsdk.get().toInt()
+        versionCode = libs.versions.config.android.versioncode.get().toInt()
+        versionName = libs.versions.config.android.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -25,7 +24,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -33,8 +33,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     packagingOptions {
         resources {
@@ -62,90 +62,41 @@ android {
 }
 
 dependencies {
+    // Desugaring
+    coreLibraryDesugaring(libs.desugaring)
 
-    implementation(Dependencies.coreKtx)
-    implementation(Dependencies.appCompat)
-    implementation(Dependencies.material)
-    implementation(Dependencies.lifecycleRuntimeKtx)
+    // Core Functionality
+    implementation(libs.core.ktx)
+    implementation(libs.appCompat)
+    implementation(libs.google.material)
+    implementation(libs.viewmodel.core)
+    implementation(libs.androidx.profileinstaller)
 
     // Testing
-    testImplementation(Dependencies.junit)
-    testImplementation(Dependencies.testArchCore)
-    testImplementation(Dependencies.junitTest)
-    testImplementation(Dependencies.testExtJUnitKtx)
-    testImplementation(Dependencies.mockitoInline)
-    testImplementation(Dependencies.mockitoKotlin)
-    testImplementation(Dependencies.robolectric)
-    testImplementation(Dependencies.turbine)
-    testImplementation(Dependencies.coroutineTest)
+    testImplementation(libs.junit.core)
+    testImplementation(libs.junit.test)
+    testImplementation(libs.junit.test.ktx)
+    androidTestImplementation(libs.junit.test)
 
-    androidTestImplementation(Dependencies.junitTest)
-    androidTestImplementation(Dependencies.espressoCore)
-    androidTestImplementation(Dependencies.testCoreKtx)
-    androidTestImplementation(Dependencies.testArchCore)
-    androidTestImplementation(Dependencies.mockitoAndroid)
-    androidTestImplementation(Dependencies.mockitoKotlin)
-    androidTestImplementation(Dependencies.turbine)
-
-    // Hilt Testing
-    // Local Unit Tests
-    testImplementation(Dependencies.hiltTest)
-    kaptTest(Dependencies.hiltCompiler)
-    // Instrumentation Test
-    androidTestImplementation(Dependencies.hiltTest)
-    kaptAndroidTest(Dependencies.hiltCompiler)
-
-    // Testing Compose
-    androidTestImplementation(Dependencies.junitCompose)
-    debugImplementation(Dependencies.composeTooling)
+    testImplementation(libs.androidx.test.arch.core)
+    androidTestImplementation(libs.androidx.test.arch.core)
+    androidTestImplementation(libs.androidx.test.core)
 
     // Compose
-    implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeAnimation)
-    implementation(Dependencies.composeMaterial)
-    implementation(Dependencies.composePreview)
-    implementation(Dependencies.composeActivity)
-    implementation(Dependencies.composeViewModel)
-    implementation(Dependencies.composeNavigation)
-    implementation(Dependencies.composeMaterialIconsCore)
-    implementation(Dependencies.composeMaterialIconsExtended)
-    implementation(Dependencies.composeFoundation)
-    implementation(Dependencies.composeFoundationLayout)
-    implementation(Dependencies.composeConstraintLayout)
+    // This is bundle for all common Compose deps
+    implementation(libs.bundles.compose.core)
 
-    // Retrofit
-    implementation(Dependencies.retrofit)
+    // Testing Compose
+    androidTestImplementation(libs.compose.junit)
+    debugImplementation(libs.compose.tooling)
 
-    // Moshi
-    implementation(Dependencies.moshi)
-    implementation(Dependencies.moshiKotlin)
-
-    // Timber
-    implementation(Dependencies.timber)
-
-    // Hilt
-    implementation(Dependencies.hilt)
-    implementation(Dependencies.hiltNavigationCompose)
-    kapt(Dependencies.hiltCompiler)
-
-    // Coil Image loader
-    implementation(Dependencies.coilImage)
-
-    // Accompanist
-    implementation(Dependencies.accompanistInsets)
-    implementation(Dependencies.accompanistNavigationAnimations)
-
-    // Room database
-    implementation(Dependencies.roomRuntime)
-    implementation(Dependencies.roomKtx)
-    kapt(Dependencies.roomCompiler)
-
-    // Room test
-    testImplementation(Dependencies.roomTest)
-
-    // Preferences DataStore
-    implementation(Dependencies.prefDataStore)
-
+    // Koin DI
+    implementation(libs.koin.android)
     // Splash Screen
-    implementation(Dependencies.splashScreenCore)
+    implementation(libs.splash.screen.core)
+    // Timber - Logging
+    implementation(libs.timber.log)
+
+    // Memory Leaks
+    debugImplementation(libs.leakcanary.android)
 }
