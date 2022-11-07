@@ -246,7 +246,7 @@ detekt_rule_twitter_compose = { module = "com.twitter.compose.rules:detekt", ver
 # Bundles that can be used together
 android_core = ["core.ktx", "appCompat"]
 compose_core = ["compose.ui", "compose.runtime", "compose.foundation", "compose.foundation.layout",
-    "compose.material", "compose.material3", "compose.material.icons.core", "compose.material.icons.extended",
+    "compose.material3", "compose.material.icons.core", "compose.material.icons.extended",
     "compose.animation", "compose.preview", "coil.compose", "activity.compose", "compose.tooling.preview",
     "kotlinx.collections.immutable"]
 

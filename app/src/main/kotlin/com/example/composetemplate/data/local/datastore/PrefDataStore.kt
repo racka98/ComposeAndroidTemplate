@@ -40,6 +40,6 @@ class PrefDataStore(
     val readThemeSetting: Flow<Int> = DataStoreHelpers.readPreference(
         dataStore,
         preferenceKey = PreferenceKeys.themeOption,
-        defaultValue = Theme.FOLLOW_SYSTEM.themeValue
+        defaultValue = Theme.MATERIAL_YOU.themeValue
     )
 }

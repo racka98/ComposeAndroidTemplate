@@ -1,18 +1,58 @@
 package com.example.composetemplate.ui.theme
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
+// Set of Material3 typography styles to start with
 val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+    headlineLarge = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 30.sp,
+        lineHeight = 38.sp
+    ),
+    headlineMedium = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp,
+        lineHeight = 32.sp
+    ),
+    headlineSmall = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 30.sp
+    ),
+    bodyLarge = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
+    ),
+    bodyMedium = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    ),
+    titleLarge = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp
+    ),
+    titleMedium = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+    labelLarge = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 20.sp
+    ),
+    labelMedium = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 16.sp
+    ),
+    labelSmall = TextStyle(
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp,
+        lineHeight = 6.sp
+    ),
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,
