@@ -5,12 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.composetemplate.data.local.datastore.PrefDataStore
 import com.example.composetemplate.ui.components.Greeting
 import com.example.composetemplate.ui.theme.ComposeAndroidTemplateTheme
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.composetemplate.ui.theme.Theme
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +21,12 @@ class MainActivity : ComponentActivity() {
         // proper Android 12+ support
         installSplashScreen()
 
+        val preferences by inject<PrefDataStore>()
         setContent {
-            ComposeAndroidTemplateTheme {
+            val themeValue by preferences.readThemeSetting
+                .collectAsState(initial = Theme.FOLLOW_SYSTEM.themeValue)
+
+            ComposeAndroidTemplateTheme(theme = themeValue) {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Compose")

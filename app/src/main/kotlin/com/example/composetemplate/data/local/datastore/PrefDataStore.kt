@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.composetemplate.ui.theme.Theme
 import com.example.composetemplate.utils.Constants
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -39,7 +40,7 @@ class PrefDataStore(
     val readThemeSetting: Flow<Int> = DataStoreHelpers.readPreference(
         dataStore,
         preferenceKey = PreferenceKeys.themeOption,
-        defaultValue = -1
+        defaultValue = Theme.FOLLOW_SYSTEM.themeValue
     )
 
 }

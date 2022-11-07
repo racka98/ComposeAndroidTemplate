@@ -85,6 +85,7 @@ dependencies {
     // Compose
     // This is bundle for all common Compose deps
     implementation(libs.bundles.compose.core)
+    implementation(libs.lifecycle.compose.runtime)
 
     // Testing Compose
     androidTestImplementation(libs.compose.junit)
