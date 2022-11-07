@@ -42,5 +42,4 @@ class PrefDataStore(
         preferenceKey = PreferenceKeys.themeOption,
         defaultValue = Theme.FOLLOW_SYSTEM.themeValue
     )
-
 }
