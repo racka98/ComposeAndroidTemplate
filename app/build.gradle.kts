@@ -90,6 +90,9 @@ dependencies {
     androidTestImplementation(libs.compose.junit)
     debugImplementation(libs.compose.tooling)
 
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
+
     // Koin DI
     implementation(libs.koin.android)
     // Splash Screen

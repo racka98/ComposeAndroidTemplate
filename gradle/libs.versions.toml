@@ -68,6 +68,7 @@ coil_image = "2.1.0"
 accompanist = "0.27.0"
 
 # Preference
+androidx_datastore = "1.0.0"
 multiplatform_settings = "0.9"
 
 # Billing
@@ -203,6 +204,7 @@ ktor_client_logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 revenueCat_android = { module = "com.revenuecat.purchases:purchases", version.ref = "revenueCat" }
 
 # Persistence
+androidx_datastore_preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx_datastore" }
 multiplatform_settings_core = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatform_settings" }
 multiplatform_settings_noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatform_settings" }
 multiplatform_settings_coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatform_settings" }
