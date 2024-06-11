@@ -3,8 +3,6 @@ import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
-    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.detekt.gradle)
 }
 
@@ -50,10 +48,10 @@ subprojects {
      * Start - Detekt Configuration for All sub projects
      */
     detekt {
-        config = files("$rootDir/config/detekt/detekt.yml")
+        config.setFrom("$rootDir/config/detekt/detekt.yml")
         buildUponDefaultConfig = true
         ignoredBuildTypes = listOf("release")
-        source = files(
+        source.setFrom(
             io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_JAVA,
             io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_TEST_SRC_DIR_JAVA,
             io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_KOTLIN,

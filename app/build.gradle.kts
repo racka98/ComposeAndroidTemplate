@@ -45,7 +45,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += mutableSetOf(
                 "/META-INF/{AL2.0,LGPL2.1}",
@@ -83,18 +83,20 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core)
 
     // Compose
+    implementation(platform(libs.compose.bom))
     // This is bundle for all common Compose deps
     implementation(libs.bundles.compose.core)
     implementation(libs.lifecycle.compose.runtime)
 
     // Testing Compose
-    androidTestImplementation(libs.compose.junit)
+    //androidTestImplementation(libs.compose.junit)
     debugImplementation(libs.compose.tooling)
 
     // Datastore
     implementation(libs.androidx.datastore.preferences)
 
     // Koin DI
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
     // Splash Screen
     implementation(libs.splash.screen.core)
