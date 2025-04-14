@@ -247,6 +247,7 @@ compose_core = ["compose.ui", "compose.runtime", "compose.foundation", "compose.
 [plugins]
 # All Plugins should stay here
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose_compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin_seriazation = { id = "plugin.serialization", version.ref = "kotlin" }
 ktlint_gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint_gradle" }
 detekt_gradle = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}

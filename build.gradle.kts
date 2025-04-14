@@ -4,6 +4,7 @@ import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.detekt.gradle)
+    alias(libs.plugins.compose.compiler) apply false
 }
 
 buildscript {
