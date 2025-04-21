@@ -1,77 +1,23 @@
+import com.apimorlabs.composetemplate.extensions.Versions
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.android.app)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin)
 }
 
 android {
-    namespace = "com.example.composetemplate"
-
-    compileSdk = libs.versions.config.android.compilesdk.get().toInt()
-
-    defaultConfig {
-        applicationId = libs.versions.config.android.applicationId.get()
-        minSdk = libs.versions.config.android.minsdk.get().toInt()
-        targetSdk = libs.versions.config.android.targetsdk.get().toInt()
-        versionCode = libs.versions.config.android.versioncode.get().toInt()
-        versionName = libs.versions.config.android.versionName.get()
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+    namespace = Versions.PACKAGE_NAME + ".app"
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-    packaging {
-        resources {
-            excludes += mutableSetOf(
-                "/META-INF/{AL2.0,LGPL2.1}",
-                "META-INF/licenses/ASM"
-            )
-            // Fixes conflicts caused by ByteBuddy library used in
-            // coroutines-debug and mockito
-            pickFirsts += mutableSetOf(
-                "win32-x86-64/attach_hotspot_windows.dll",
-                "win32-x86/attach_hotspot_windows.dll"
-            )
-        }
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-    // Desugaring
-    coreLibraryDesugaring(libs.desugaring)
 
     // Core Functionality
-    implementation(libs.core.ktx)
-    implementation(libs.appCompat)
-    implementation(libs.google.material)
-    implementation(libs.viewmodel.core)
     implementation(libs.androidx.profileinstaller)
+    implementation(libs.core.ktx)
 
     // Testing
     testImplementation(libs.junit.core)

@@ -98,6 +98,7 @@ crashlytics_gradle = "3.0.3"
 # Build Plugins (as Classpath)
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle_plugin" }
 kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose_compiler_gradle_plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 kotlin_serialization_plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 sqldelight_plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqlDelight" }
 google_services_plugin = { module = "com.google.gms:google-services", version.ref = "google_services" }
@@ -246,10 +247,18 @@ compose_core = ["compose.ui", "compose.runtime", "compose.foundation", "compose.
 ########### Plugnis Start ##################
 [plugins]
 # All Plugins should stay here
+android_application = { id = "com.android.application", version.ref = "android_gradle_plugin" }
+android_library = { id = "com.android.library", version.ref = "android_gradle_plugin" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose_compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlin_seriazation = { id = "plugin.serialization", version.ref = "kotlin" }
+kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ktlint_gradle = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint_gradle" }
 detekt_gradle = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+
+## Gradle Convention custom plugins
+detekt-setup = { id = "plugin.template.detekt.setup" }
+android-app = { id = "plugin.template.compose.android.app" }
+android-lib = { id = "plugin.template.compose.android.lib" }
 
 ########### Plugnis END ##################

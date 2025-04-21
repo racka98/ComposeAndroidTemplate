@@ -1,12 +1,4 @@
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    alias(libs.plugins.detekt.gradle)
-    alias(libs.plugins.compose.compiler) apply false
-}
-
 buildscript {
 
     repositories {
@@ -14,97 +6,41 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
         maven(url = "https://www.jitpack.io")
+        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-    dependencies {
-        classpath(libs.android.gradle.plugin)
-        classpath(libs.kotlin.gradle.plugin)
+}
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.detekt.gradle) apply false
+    alias(libs.plugins.detekt.setup) apply false
+    alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.kotlin) apply false
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://www.jitpack.io")
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers")
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
-    }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
-        kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11.majorVersion
-    }
-}
 
-subprojects {
+    afterEvaluate {
+        apply(plugin = libs.plugins.detekt.setup.get().pluginId)
 
-    // Detekt
-    apply(plugin = "io.gitlab.arturbosch.detekt")
-
-    /**
-     * Start - Detekt Configuration for All sub projects
-     */
-    detekt {
-        config.setFrom("$rootDir/config/detekt/detekt.yml")
-        buildUponDefaultConfig = true
-        ignoredBuildTypes = listOf("release")
-        source.setFrom(
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_JAVA,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_TEST_SRC_DIR_JAVA,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
-            io.gitlab.arturbosch.detekt.extensions.DetektExtension.DEFAULT_TEST_SRC_DIR_KOTLIN,
-            // Kotlin Multiplatform
-            "src/commonMain/kotlin",
-            "src/androidMain/kotlin",
-            "src/iosMain/kotlin",
-            "src/jvmMain/kotlin",
-            "src/desktopMain/kotlin",
-            "src/jsMain/kotlin",
-        )
-    }
-
-    tasks.withType<Detekt>().configureEach detekt@{
-        exclude("**/build/**", "**/generated/**", "**/resources/**")
-        basePath = rootProject.projectDir.absolutePath
-        autoCorrect = true
-        reports {
-            xml.required.set(false)
-            html.required.set(true)
-            txt.required.set(false)
-            sarif.required.set(false)
-            md.required.set(false)
-
-            html {
-                required.set(true)
-                outputLocation.set(
-                    this@subprojects.layout.buildDirectory.file("reports/detekt.html")
-                )
+        // Remove log pollution until Android support in KMP improves.
+        project.extensions
+            .findByType<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension>()
+            ?.let { kmpExt ->
+                kmpExt.sourceSets.removeAll {
+                    setOf(
+                        "androidAndroidTestRelease",
+                        "androidTestFixtures",
+                        "androidTestFixturesDebug",
+                        "androidTestFixturesRelease",
+                        "androidTestFixturesDemo"
+                    )
+                        .contains(it.name)
+                }
             }
-        }
-    }
-
-    tasks.withType<DetektCreateBaselineTask>().configureEach detekt@{
-        exclude("**/build/**", "**/generated/**", "**/resources/**")
-        basePath = rootProject.projectDir.absolutePath
-    }
-
-    beforeEvaluate {
-        dependencies {
-            detektPlugins(libs.detekt.formatting)
-            detektPlugins(libs.detekt.rule.twitter.compose)
-        }
-
-        // Filter out Detekt from check task
-        if (tasks.names.contains("check")) {
-            tasks.named("check").configure {
-                this.setDependsOn(this.dependsOn.filterNot {
-                    it is TaskProvider<*> && it.name == "detekt"
-                })
-            }
-        }
     }
 }
