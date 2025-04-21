@@ -9,7 +9,7 @@ plugins {
 android {
     namespace = Versions.PACKAGE_NAME + ".app"
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = Versions.jvmTarget
     }
 }
 

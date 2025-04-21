@@ -23,11 +23,11 @@ import kotlin.jvm.optionals.getOrNull
 class DetektConventionPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         with(pluginManager) {
-            val detekt = libs.findPlugin("detektGradle").getOrNull()?.orNull
+            val detekt = libs.findPlugin("detekt_gradle").getOrNull()?.orNull
             detekt?.let { plugin -> apply(plugin.pluginId) }
         }
 
-        val detektPlugin = libs.findPlugin("detektGradle").getOrNull()?.orNull
+        val detektPlugin = libs.findPlugin("detekt_gradle").getOrNull()?.orNull
 
         detektPlugin?.run {
             apply(plugin = pluginId)
