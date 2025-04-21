@@ -42,8 +42,8 @@ class DetektConventionPlugin : Plugin<Project> {
                     val detekt = extensions.getByType<DetektExtension>()
                     with(detekt) {
                         buildUponDefaultConfig = true
-                        config.from("$rootDir/tooling/checks/detekt.yml")
-                        baseline = file("$rootDir/tooling/checks//baseline.xml")
+                        config.from("$rootDir/build-configs/checks/detekt.yml")
+                        baseline = file("$rootDir/build-configs/checks//baseline.xml")
                         buildUponDefaultConfig = true
                         ignoredBuildTypes = listOf("release")
                         source.from(

@@ -110,5 +110,5 @@ enum class Theme(
         themeName = "Dark Theme",
         icon = Icons.Outlined.DarkMode,
         themeValue = AppCompatDelegate.MODE_NIGHT_YES
-    );
+    )
 }
